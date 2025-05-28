@@ -37,6 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'api',  # Register the 'api' app where your models and views are defined
+    
+      # Assuming 'collegeapi' is the name of your app
+
 ]
 
 MIDDLEWARE = [
