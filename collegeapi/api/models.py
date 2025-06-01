@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 # create a college model
 
@@ -28,4 +29,20 @@ class student(models.Model):
     is_active = models.BooleanField(default=True)
     date_of_birth = models.DateField(null=True, blank=True)
 
-    College = models.ForeignKey(College, on_delete=models.CASCADE)
+   
+
+class staff(models.Model):
+    name = models.CharField(max_length=100)
+    age = models.IntegerField()
+    college = models.ForeignKey(College, on_delete=models.CASCADE, related_name='staff')
+    email = models.EmailField(unique=True)
+    phone_number = models.CharField(max_length=15, unique=True)
+    address = models.TextField()
+    hire_date = models.DateField(auto_now_add=True)
+    position = models.CharField(max_length=50)
+    salary = models.DecimalField(max_digits=10, decimal_places=2)
+    profile_picture = models.ImageField(upload_to='profile_pictures/', null=True, blank=True)
+
+
+
+  # Return a string representation of the staff member
