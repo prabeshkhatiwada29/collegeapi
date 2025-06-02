@@ -46,3 +46,18 @@ class staff(models.Model):
 
 
   # Return a string representation of the staff member
+
+class Faculty(models.Model):
+    name = models.CharField(max_length=100)
+    age= models.IntegerField()
+    college = models.ForeignKey(College, on_delete=models.CASCADE, related_name='faculty')
+    email = models.EmailField(unique=True)
+    phone_number = models.CharField(max_length=15, unique=True)
+    address = models.TextField()
+    hire_date = models.DateField(auto_now_add=True)
+    department = models.CharField(max_length=50)
+    
+    profile_picture = models.ImageField(upload_to='profile_pictures/', null=True, blank=True)
+    expertise = models.TextField()  # Store as a comma-separated string or JSON
+    is_active = models.BooleanField(default=True)
+

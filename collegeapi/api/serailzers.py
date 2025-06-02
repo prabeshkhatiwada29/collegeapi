@@ -1,6 +1,6 @@
 # create serealizers for the college and student models
 from rest_framework import serializers
-from api.models import College, student, staff
+from api.models import College, student, staff , Faculty 
 
 class CollegeSerializer(serializers.HyperlinkedModelSerializer):
   
@@ -17,3 +17,8 @@ class StaffSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = staff
         fields = "__all__"  # Assuming staff is also a student model, adjust as necessary
+
+class FacultySerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Faculty
+        fields = "__all__"  # Assuming faculty is also a student model, adjust as necessary

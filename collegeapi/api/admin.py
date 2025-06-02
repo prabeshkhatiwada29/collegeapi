@@ -1,5 +1,5 @@
 from django.contrib import admin
-from api.models import College, student,staff
+from api.models import College, student,staff, Faculty
 
 
 # Register your models here.
@@ -18,6 +18,13 @@ class StaffAdmin(admin.ModelAdmin):
     search_fields = ('name', 'college__name', 'position', )  # Search by staff name, college name, and position
     list_filter = ('college', 'position', )
 
+class FacultyAdmin(admin.ModelAdmin):
+    list_display = ('name', 'age', 'college', 'department')
+    search_fields = ('name', 'college__name', 'department', )  # Search by faculty name, college name, and department
+    list_filter = ('college', 'department', )
+
+
 admin.site.register(College,CollegeAdmin)
 admin.site.register(student,StudentAdmin)
 admin.site.register(staff,StaffAdmin)
+admin.site.register(Faculty, FacultyAdmin)
