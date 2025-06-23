@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,6 +45,8 @@ INSTALLED_APPS = [
     'user',
     'rest_framework_simplejwt',
     'corsheaders',
+    'jazzmin',
+    
 
 ]
 
@@ -153,6 +156,8 @@ REST_FRAMEWORK = {
 }
 
 
+
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.1:3000",
@@ -187,3 +192,21 @@ SIMPLE_JWT = {
     "SLIDING_TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSlidingSerializer",
 }
 AUTH_USER_MODEL = 'user.User'
+
+
+
+# Jazzmin settings
+JAZZMIN_SETTINGS = {
+      "site_title": "Library Admin",
+        "site_header": "Library Admin",
+        "copyright": "Acme Library Ltd",
+
+           "topmenu_links": [
+
+    
+
+        # App with dropdown menu to all its models pages (Permissions checked against models)
+        {"app": "api", "name": "API"},
+    ],
+        
+        }
