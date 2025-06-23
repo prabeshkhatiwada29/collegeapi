@@ -1,30 +1,31 @@
 from django.contrib import admin
-from api.models import College, student,staff, Faculty
+from api.models import College, student, staff, Faculty
 
+class CustomBaseAdmin(admin.ModelAdmin):
+    class Media:
+        css = {"all": ("css/admin_custom.css",)}
+        js = ("js/admin_custom.js",)
 
-# Register your models here.
+class CollegeAdmin(CustomBaseAdmin):
+    list_display = ('name', 'location', 'established_year')
+    search_fields = ('name', 'location', )
 
-class CollegeAdmin(admin.ModelAdmin):
-    list_display= ('name', 'location', 'established_year')
-    search_fields = ('name', 'location', )  
-
-class StudentAdmin(admin.ModelAdmin):
+class StudentAdmin(CustomBaseAdmin):
     list_display = ('name', 'age', 'college', )
-    search_fields = ('name', 'college__name', )  # Search by student name and college name
-    list_filter = ('college', ) 
-    
-class StaffAdmin(admin.ModelAdmin):
+    search_fields = ('name', 'college__name', )
+    list_filter = ('college', )
+
+class StaffAdmin(CustomBaseAdmin):
     list_display = ('name', 'age', 'college', 'position')
-    search_fields = ('name', 'college__name', 'position', )  # Search by staff name, college name, and position
+    search_fields = ('name', 'college__name', 'position', )
     list_filter = ('college', 'position', )
 
-class FacultyAdmin(admin.ModelAdmin):
+class FacultyAdmin(CustomBaseAdmin):
     list_display = ('name', 'age', 'college', 'department')
-    search_fields = ('name', 'college__name', 'department', )  # Search by faculty name, college name, and department
+    search_fields = ('name', 'college__name', 'department', )
     list_filter = ('college', 'department', )
 
-
-admin.site.register(College,CollegeAdmin)
-admin.site.register(student,StudentAdmin)
-admin.site.register(staff,StaffAdmin)
+admin.site.register(College, CollegeAdmin)
+admin.site.register(student, StudentAdmin)
+admin.site.register(staff, StaffAdmin)
 admin.site.register(Faculty, FacultyAdmin)

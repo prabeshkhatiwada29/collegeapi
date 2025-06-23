@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     
+    'unfold',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,7 +46,8 @@ INSTALLED_APPS = [
     'user',
     'rest_framework_simplejwt',
     'corsheaders',
-    'jazzmin',
+    'drf_yasg',
+    
     
 
 ]
@@ -195,18 +197,68 @@ AUTH_USER_MODEL = 'user.User'
 
 
 
-# Jazzmin settings
-JAZZMIN_SETTINGS = {
-      "site_title": "Library Admin",
-        "site_header": "Library Admin",
-        "copyright": "Acme Library Ltd",
 
-           "topmenu_links": [
+UNFOLD = UNFOLD = {
+    "SITE_TITLE": "My Admin Panel",
+    "SITE_HEADER": "My Admin Panel",
+    "SITE_URL": "/",
+    "SHOW_COUNTS": True,
 
-    
+    "SIDEBAR": {
+        "SHOW_SEARCH": True,
+        "SHOW_ALL_APPS": False,
+        "NAV": [
+            {
+                "title": "Api",
+                "icon": "computer",  # optional Lucide icon
+                "items": [
+                    {
+                        "title": "Colleges",
+                        "url": "admin:api_college_changelist",
+                        "icon": "building",
+                    },
+                    {
+                        "title": "Facultys",
+                        "url": "admin:api_faculty_changelist",
+                        "icon": "book",
+                    },
+                    {
+                        "title": "Staffs",
+                        "url": "admin:api_staff_changelist",
+                        "icon": "person-standing",
+                    },
+                    {
+                        "title": "Students",
+                        "url": "admin:api_student_changelist",
+                        "icon": "graduation-cap",
+                    },
+                ],
+            },
+            {
+                "title": "Authentication",
+                "icon": "shield",
+                "items": [
+                    {
+                        "title": "Users",
+                        "url": "admin:auth_user_changelist",
+                        "icon": "user",
+                    },
+                    {
+                        "title": "Groups",
+                        "url": "admin:auth_group_changelist",
+                        "icon": "users",
+                    },
+                ],
+            },
+        ],
+    },
 
-        # App with dropdown menu to all its models pages (Permissions checked against models)
-        {"app": "api", "name": "API"},
-    ],
-        
-        }
+    "ICONS": {
+        "auth.user": "user",
+        "auth.group": "users",
+        "api.college": "building",
+        "api.faculty": "book",
+        "api.staff": "person-standing",
+        "api.student": "graduation-cap",
+    }
+}
